@@ -1,0 +1,12 @@
+{
+  "sql_ids": {
+    "host": "",
+    "username": "",
+    "password": "",
+    "database": ""
+  },
+  "settings": {
+    "target_table": "",
+    "result_display_method": "file"
+  }
+}
