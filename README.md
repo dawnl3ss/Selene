@@ -1,2 +1,5 @@
 # Selene
-Séléné is a database table data extractor written in python3 &amp; fully developped by me in my free time.
+
+This project work with pymysql & python3    
+
+You can put your mysql identifiers and others settings in settings.json file.
