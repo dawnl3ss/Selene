@@ -19,8 +19,9 @@ def main():
         file.close()
         print("Data has been successfully written in the file 'result.txt'")
     elif json.load(open("settings.json"))["settings"]["result_display_method"] == "console":
+        print("-==== {} TABLE BUMP START ====-\n".format(manager.target_table.upper()))
+        
         for data in cursor:
-            print("-==== {} TABLE BUMP START ====-\n".format(manager.target_table.upper()))
             print(str(data))
     else: print("Wrong display method given.")
 
