@@ -1,6 +1,6 @@
 # Selene
 
-🐍 This project work with python3 & pymysql.   
+🐍 This project works with python3 & pymysql.   
 ⚙️ You can put your mysql identifiers and others settings in settings.json file.    
 
 ### 📌 How to start ?  
