@@ -4,6 +4,13 @@ class u_table():
         self.name = name
         self.rows = rows
 
+    def add_row(self, row):
+        self.rows[row.get_key()] = row
+
+
+    def get_name(self):
+        return self.name
+
     def get_rows(self):
         return self.rows
 
