@@ -4,12 +4,11 @@ import sys
 def make_bar(toolbar_width):
     sys.stdout.write("✦ Dumping %s" % (" " * toolbar_width))
     sys.stdout.flush()
-    sys.stdout.write("\b" * (toolbar_width + 1))  # return to start of line, after '['
+    sys.stdout.write("\b" * (toolbar_width + 1))
 
     for i in range(toolbar_width):
-        time.sleep(1)  # do real work here
-        # update the bar
+        time.sleep(1)
         sys.stdout.write(".")
         sys.stdout.flush()
 
-    sys.stdout.write("\n")  # this ends the progress bar
+    sys.stdout.write("\n")
