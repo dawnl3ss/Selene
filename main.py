@@ -6,7 +6,7 @@ from src.struct.type.u_table import u_table
 from src.struct.type.dataset import dataset
 from src.style.ascii import get_ascii
 from src.sql.sql_manager import sql_manager
-from src.style.toolbar import make_bar
+from src.style.toolbar import make_bar, print_time
 
 def main(arguments):
     host, user, database = arguments
@@ -32,6 +32,7 @@ def main(arguments):
 
     print(" ")
     make_bar(3)
+    print_time("✦ Database has been dumped !")
     print(" ")
 
     # store data in my oop structure
@@ -45,17 +46,43 @@ def main(arguments):
                 u_tab.add_row(dataset(rows))
             structure.add_table(u_tab)
 
-    # display data from my oop structure
-    for table in structure.get_tables():
-        print(f"✦ Table '{table}' :")
-
-        for row in structure.get_table(table).get_rows():
-            for val in row.get_value():
-                print("  | " + str(val), end=" | ")
-            print(" ")
+    while True:
+        choice = input(" Which method you want to get your result ? [f=file | s=shell] : ")
         print(" ")
 
+        if choice in ["shell", 's']:
+            print("\n")
+            # display data from my oop structure
+            for table in structure.get_tables():
+                print(f"✦ Table '{table}' :")
 
+                for row in structure.get_table(table).get_rows():
+                    for val in row.get_value():
+                        print("  | " + str(val), end=" | ")
+                    print(" ")
+                print(" ")
+            break
+        elif choice in ["file", 'f']:
+            file = open(f"dumps/{host}--{user}--{database}.txt", 'w')
+            file.write(f"<---------- Database Dump : {database} ---------->\n\n")
+
+            for table in structure.get_tables():
+                file.write(f"✦ Table '{table}' :")
+                file.write("\n")
+
+                for row in structure.get_table(table).get_rows():
+                    for val in row.get_value():
+                        file.write("  | " + str(val) + " | ")
+                    file.write("\n")
+                file.write("\n")
+            file.write("<-------------------------------------------------->")
+            file.close()
+            print(f"✦ Dump has been successfully writen in dumps/{host}--{user}--{database}.txt !")
+            print(" ")
+            break
+        else:
+            print("✦ Wrong method given. Restarting...")
+            print(" ")
 
 if __name__ == "__main__":
     parse_arguments()
