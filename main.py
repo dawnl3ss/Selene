@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import sys
+import time
+from var_dump import var_dump
 from src.parser import parse_arguments
 from src.struct.dump import dump
 from src.struct.type.u_table import u_table
@@ -23,24 +25,41 @@ def main(arguments):
     cursor_table.execute(f"USE {database}")
     cursor_rows = manager.connect_db().cursor()
     cursor_rows.execute(f"USE {database}")
+    cursor_rows_colum = manager.connect_db().cursor()
+    cursor_rows_colum.execute(f"USE {database}")
 
     cursor_table.execute("SHOW TABLES")
     structure = dump()
 
-    for data in cursor_table:
+    print(" ")
+    print("✦ Dumping database...")
+    print(" ")
+    time.sleep(1)
 
+    # store data in my oop structure
+    for data in cursor_table:
         for table in data:
             cursor_rows.execute(f"SELECT * FROM {table}")
 
+            u_tab = u_table(table, [])
+
             for rows in cursor_rows:
-                i = 0
-                u_tab = u_table(table, {})
-                for p_row in rows:
-                    u_tab.add_row(dataset(p_row))
-                    i+=1
+                u_tab.add_row(dataset(rows))
             structure.add_table(u_tab)
 
-    print(structure.get_table("faq").get_rows())
+    # display data from my oop structure
+    for table in structure.get_tables():
+        print(f"✦ Table '{table}' :")
+        row_count = 1
+
+        for row in structure.get_table(table).get_rows():
+            print(f"✦✦ Row {row_count} :")
+            
+            for val in row.get_value():
+                print(" | " + str(val), end=" | ")
+            row_count += 1
+        print(" ")
+
 
 
 if __name__ == "__main__":

@@ -4,4 +4,4 @@ class dataset():
         self.value = value
 
     def get_value(self):
-        self.value
+        return self.value
