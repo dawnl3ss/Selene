@@ -53,11 +53,10 @@ def main(arguments):
         row_count = 1
 
         for row in structure.get_table(table).get_rows():
-            print(f"✦✦ Row {row_count} :")
-            
             for val in row.get_value():
-                print(" | " + str(val), end=" | ")
+                print("  | " + str(val), end=" | ")
             row_count += 1
+            print(" ")
         print(" ")
 
 
