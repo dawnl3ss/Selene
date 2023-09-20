@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import os
 import sys
 from src.parser import parse_arguments
 from src.struct.dump import dump
@@ -24,16 +25,12 @@ def main(arguments):
     cursor_table.execute(f"USE {database}")
     cursor_rows = manager.connect_db().cursor()
     cursor_rows.execute(f"USE {database}")
-    cursor_rows_colum = manager.connect_db().cursor()
-    cursor_rows_colum.execute(f"USE {database}")
 
     cursor_table.execute("SHOW TABLES")
     structure = dump()
 
     print(" ")
     make_bar(3)
-    print_time("✦ Database has been dumped !")
-    print(" ")
 
     # store data in my oop structure
     for data in cursor_table:
@@ -46,11 +43,14 @@ def main(arguments):
                 u_tab.add_row(dataset(rows))
             structure.add_table(u_tab)
 
+    print_time("✦ Database has been dumped !")
+    print(" ")
+
     while True:
         choice = input(" Which method you want to get your result ? [f=file | s=shell] : ")
         print(" ")
 
-        if choice in ["shell", 's']:
+        if choice in ["shell", "s"]:
             print("\n")
             # display data from my oop structure
             for table in structure.get_tables():
@@ -62,7 +62,7 @@ def main(arguments):
                     print(" ")
                 print(" ")
             break
-        elif choice in ["file", 'f']:
+        elif choice in ["file", "f"]:
             file = open(f"dumps/{host}--{user}--{database}.txt", 'w')
             file.write(f"<---------- Database Dump : {database} ---------->\n\n")
 
@@ -86,4 +86,11 @@ def main(arguments):
 
 if __name__ == "__main__":
     parse_arguments()
-    main(arguments=(sys.argv[2], sys.argv[4], sys.argv[6]))
+
+    if len(sys.argv) == 7:
+        flags = (sys.argv[1], sys.argv[3], sys.argv[5])
+
+        if flags[0] in ["-hh", "-u", "-d"] and flags[1] in ["-hh", "-u", "-d"] and flags[2] in ["-hh", "-u", "-d"]:
+            main(arguments=(sys.argv[2], sys.argv[4], sys.argv[6]))
+        else: os.system("python3 main.py --help")
+    else: os.system("python3 main.py --help")

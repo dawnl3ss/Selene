@@ -19,7 +19,7 @@ def print_time(message):
     sys.stdout.write("\b" * (len(message) + 1))
 
     for i in range(len(message)):
-        time.sleep(.1)
+        time.sleep(.05)
         sys.stdout.write(message[i])
         sys.stdout.flush()
 
