@@ -62,7 +62,7 @@ def main(arguments):
 
                 for row in structure.get_table(table).get_rows():
                     for val in row.get_value():
-                        print("  | " + str(val), end=" | ")
+                        print("  | " + str(val), end=" |   ")
                     print(" ")
                 print(" ")
             break
@@ -76,7 +76,7 @@ def main(arguments):
 
                 for row in structure.get_table(table).get_rows():
                     for val in row.get_value():
-                        file.write("  | " + str(val) + " | ")
+                        file.write("  | " + str(val) + " |   ")
                     file.write("\n")
                 file.write("\n")
             file.write("<-------------------------------------------------->")
