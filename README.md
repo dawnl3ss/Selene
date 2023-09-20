@@ -23,38 +23,4 @@ python3 main.py -hh 127.0.0.1 -u root -d database-test
 Then, Selene will be asking you the password which match with your username.
 
 ### 📌 Example :
-```bash
-┌─[amanara@parrot]─[~/Desktop/Selene]
-└──╼ [★]$ python3 main.py -hh 127.0.0.1 -u root -d db_example
-☾ Starting Selene dumper...
-
-    _.._           ██████ ▓█████  ██▓    ▓█████  ███▄    █ ▓█████ 
-   .' .-'`       ▒██    ▒ ▓█   ▀ ▓██▒    ▓█   ▀  ██ ▀█   █ ▓█   ▀ 
-  /  /           ░ ▓██▄   ▒███   ▒██░    ▒███   ▓██  ▀█ ██▒▒███          _.._    
-  |  |             ▒   ██▒▒▓█  ▄ ▒██░    ▒▓█  ▄ ▓██▒  ▐▌██▒▒▓█  ▄       .' .-'`  
-  \  '.___.;     ▒██████▒▒░▒████▒░██████▒░▒████▒▒██░   ▓██░░▒████▒     /  /      
-   '._  _.'      ▒ ▒▓▒ ▒ ░░░ ▒░ ░░ ▒░▓  ░░░ ▒░ ░░ ▒░   ▒ ▒ ░░ ▒░ ░     |  |      
-      ``         ░ ░▒  ░ ░ ░ ░  ░░ ░ ▒  ░ ░ ░  ░░ ░░   ░ ▒░ ░ ░  ░     \  '.___.;
-                 ░  ░  ░     ░     ░ ░      ░      ░   ░ ░    ░         '._  _.' 
-                       ░     ░  ░    ░  ░   ░  ░         ░    ░  ░         ``    
-
-✦ Best database dumper written by Dawnl3ss.
-✦ This tool is only design for educationnal and ethical purpose. I am not responsible for your usage.
-✦ Github : https://github.com/dawnl3ss
- 
- MySQL root's password : root
- 
-✦ Dumping... 
-✦ Database has been dumped !
- 
- Which method you want to get your result ? [f=file | s=shell] : s
- 
-
-
-✦ Table 'faq' :
-  | 1 |     | Software |     | Some question here |     | Some answer here |    
-  | 1 |     | Software |     | Another question huh ? |     | Yup but i dont have any answer dude... |    
- 
-✦ Table 'users' :
-  | 1 |     | Dawnless |     | daa@gmail.com |     | ijbndsbndihqsnhidqsbnd |
-```
+<img src="https://github.com/dawnl3ss/Selene/blob/main/img/example.png">
