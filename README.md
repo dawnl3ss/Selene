@@ -11,7 +11,7 @@ You can download Selene from github :
 # Clone the repository
 $ git clone https://github.com/dawnl3ss/Selene
 
-# go to the Theia directory
+# go to the Selene directory
 $ cd Selene
 ```
 ## 📌 How to start ?  
