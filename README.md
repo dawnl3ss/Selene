@@ -2,15 +2,25 @@
 
 🐍 This project works with python3 & pymysql.   
 ⚙️ You can put your mysql identifiers and others settings in settings.json file.    
+<br>
+<hr>
 
 ### 📌 How to start ?  
-- First, put your mysql identifiers and others settings in the <a href="https://github.com/4m4Sec/Selene/blob/main/settings/settings.json">settings.json</a> file.
-- Then, just run the <a href="https://github.com/4m4Sec/Selene/blob/main/main.py">main.py</a> file in your shell.
-```
-python3 main.py
+Selene is an easy-to-use script written with python3. Thus, we will use python3 to start.
+The <a href="https://github.com/dawnl3ss/Selene/blob/main/main.py">main.py</a> file takes 3 differents parameters :
+- -hh / --host : the MySQL host ip-address.
+- -u / --user : the username.
+- -d / --database : the database that will be dumped.  
+
+
+Here is an example :
+<br>
+
+```bash
+python3 main.py -hh 127.0.0.1 -u root -d database-test
 ```
 
-### 📌 Results :  
-You have two differents options for results display in the <a href="https://github.com/4m4Sec/Selene/blob/main/settings/settings.json">settings.json</a> file :
-- display in a file -> "file"
-- display directly in the shell -> "console"
+Then, Selene will be asking you the password which match with your username.
+
+### 📌 Example :
+<img src="">
