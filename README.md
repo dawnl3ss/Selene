@@ -8,6 +8,14 @@
 ### 📌 How to start ?  
 Selene is an easy-to-use script written with python3. Thus, we will use python3 to start.
 The <a href="https://github.com/dawnl3ss/Selene/blob/main/main.py">main.py</a> file takes 3 differents parameters :
+- -hh / --host : the MySQL host ip-address.
+- -u / --user : the username.
+- -d / --database : the database that will be dumped.  
+
+
+Here is an example :
+<br>
+
 ```bash
-python3 main.py
+python3 main.py -hh 127.0.0.1 -u root -d database-test
 ```
