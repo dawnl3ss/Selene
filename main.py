@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 import sys
+import signal
 from src.parser import parse_arguments
 from src.struct.dump import dump
 from src.struct.type.u_table import u_table
@@ -17,6 +18,9 @@ def main(arguments):
     print("✦ This tool is only design for educationnal and ethical purpose. I am not responsible for your usage.")
     print("✦ Github : https://github.com/dawnl3ss")
     print(" ")
+
+    signal.signal(signal.SIGINT, handler)
+
     password = input(f" MySQL {user}'s password : ")
 
     manager = sql_manager(host, user, password, database)
@@ -83,6 +87,10 @@ def main(arguments):
         else:
             print("✦ Wrong method given. Restarting...")
             print(" ")
+
+def handler(signum, frame):
+    print("\n\n✦ You stopped Selene. Goodby !\n")
+    exit(1)
 
 if __name__ == "__main__":
     parse_arguments()
