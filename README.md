@@ -1,7 +1,6 @@
 # Selene
 
 🐍 This project works with python3 & pymysql.   
-  
 <br>
 <hr>
 
