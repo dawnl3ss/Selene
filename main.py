@@ -67,6 +67,8 @@ def main(arguments):
                 print(" ")
             break
         elif choice in ["file", "f"]:
+            if not os.path.isdir("dumps/"):
+                os.system("mkdir dumps/")
             file = open(f"dumps/{host}--{user}--{database}.txt", 'w')
             file.write(f"<---------- Database Dump : {database} ---------->\n\n")
 
