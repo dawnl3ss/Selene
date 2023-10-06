@@ -30,13 +30,19 @@ class sql_manager():
         )
 
     def check_database(self):
-        cursor = pymysql.connect(
-            host = self.get_host(),
-            user = self.get_username(),
-            password = self.get_password()).cursor()
-        cursor.execute("SHOW DATABASES")
+        try:
+            cursor = pymysql.connect(
+                host = self.get_host(),
+                user = self.get_username(),
+                password = self.get_password()).cursor()
+            cursor.execute("SHOW DATABASES")
 
-        for data in cursor:
-            if data[0] == self.db:
-                return True
-        return False
+            for data in cursor:
+                if data[0] == self.db:
+                    return True
+            return False
+        except pymysql.err.OperationalError:
+            print(" ")
+            print(f"✦ Selene can not connect to mysql service. Maybe wrong information given. Closing Selene...")
+            print(" ")
+            return exit(-1)
