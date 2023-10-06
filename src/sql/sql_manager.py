@@ -28,3 +28,15 @@ class sql_manager():
             password = self.get_password(),
             database = self.get_db()
         )
+
+    def check_database(self):
+        cursor = pymysql.connect(
+            host = self.get_host(),
+            user = self.get_username(),
+            password = self.get_password()).cursor()
+        cursor.execute("SHOW DATABASES")
+
+        for data in cursor:
+            if data[0] == self.db:
+                return True
+        return False

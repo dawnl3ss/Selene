@@ -10,6 +10,7 @@ from src.style.ascii import get_ascii
 from src.sql.sql_manager import sql_manager
 from src.style.toolbar import make_bar, print_time
 
+
 def main(arguments):
     host, user, database = arguments
     print("☾ Starting Selene dumper...")
@@ -25,74 +26,80 @@ def main(arguments):
 
     manager = sql_manager(host, user, password, database)
 
-    cursor_table = manager.connect_db().cursor()
-    cursor_table.execute(f"USE {database}")
-    cursor_rows = manager.connect_db().cursor()
-    cursor_rows.execute(f"USE {database}")
+    if (manager.check_database()):
+        cursor_table = manager.connect_db().cursor()
+        cursor_table.execute(f"USE {database}")
+        cursor_rows = manager.connect_db().cursor()
+        cursor_rows.execute(f"USE {database}")
 
-    cursor_table.execute("SHOW TABLES")
-    structure = dump()
+        cursor_table.execute("SHOW TABLES")
+        structure = dump()
 
-    print(" ")
-    make_bar(3)
+        print(" ")
+        make_bar(3)
 
-    # store data in my oop structure
-    for data in cursor_table:
-        for table in data:
-            cursor_rows.execute(f"SELECT * FROM {table}")
+        # store data in my oop structure
+        for data in cursor_table:
+            for table in data:
+                cursor_rows.execute(f"SELECT * FROM {table}")
 
-            u_tab = u_table(table, [])
+                u_tab = u_table(table, [])
 
-            for rows in cursor_rows:
-                u_tab.add_row(dataset(rows))
-            structure.add_table(u_tab)
+                for rows in cursor_rows:
+                    u_tab.add_row(dataset(rows))
+                structure.add_table(u_tab)
 
-    print_time("✦ Database has been dumped !")
-    print(" ")
-
-    while True:
-        choice = input(" Which method you want to get your result ? [f=file | s=shell] : ")
+        print_time("✦ Database has been dumped !")
         print(" ")
 
-        if choice in ["shell", "s"]:
-            print("\n")
-            # display data from my oop structure
-            for table in structure.get_tables():
-                print(f"✦ Table '{table}' :")
+        while True:
+            choice = input(" Which method you want to get your result ? [f=file | s=shell] : ")
+            print(" ")
 
-                for row in structure.get_table(table).get_rows():
-                    for val in row.get_value():
-                        print("  | " + str(val), end=" |   ")
+            if choice in ["shell", "s"]:
+                print("\n")
+                # display data from my oop structure
+                for table in structure.get_tables():
+                    print(f"✦ Table '{table}' :")
+
+                    for row in structure.get_table(table).get_rows():
+                        for val in row.get_value():
+                            print("  | " + str(val), end=" |   ")
+                        print(" ")
                     print(" ")
-                print(" ")
-            break
-        elif choice in ["file", "f"]:
-            if not os.path.isdir("dumps/"):
-                os.system("mkdir dumps/")
-            file = open(f"dumps/{host}--{user}--{database}.txt", 'w')
-            file.write(f"<---------- Database Dump : {database} ---------->\n\n")
+                break
+            elif choice in ["file", "f"]:
+                if not os.path.isdir("dumps/"):
+                    os.system("mkdir dumps/")
+                file = open(f"dumps/{host}--{user}--{database}.txt", 'w')
+                file.write(f"<---------- Database Dump : {database} ---------->\n\n")
 
-            for table in structure.get_tables():
-                file.write(f"✦ Table '{table}' :")
-                file.write("\n")
-
-                for row in structure.get_table(table).get_rows():
-                    for val in row.get_value():
-                        file.write("  | " + str(val) + " |   ")
+                for table in structure.get_tables():
+                    file.write(f"✦ Table '{table}' :")
                     file.write("\n")
-                file.write("\n")
-            file.write("<-------------------------------------------------->")
-            file.close()
-            print(f"✦ Dump has been successfully writen in dumps/{host}--{user}--{database}.txt !")
-            print(" ")
-            break
-        else:
-            print("✦ Wrong method given. Restarting...")
-            print(" ")
+
+                    for row in structure.get_table(table).get_rows():
+                        for val in row.get_value():
+                            file.write("  | " + str(val) + " |   ")
+                        file.write("\n")
+                    file.write("\n")
+                file.write("<-------------------------------------------------->")
+                file.close()
+                print(f"✦ Dump has been successfully writen in dumps/{host}--{user}--{database}.txt !")
+                print(" ")
+                break
+            else:
+                print("✦ Wrong method given. Restarting...")
+                print(" ")
+    else:
+        print(" ")
+        print(f"✦ Unknown database '{database}'. Closing Selene...")
+        print(" ")
 
 def handler(signum, frame):
     print("\n\n✦ You stopped Selene. Goodby !\n")
     exit(1)
+
 
 if __name__ == "__main__":
     parse_arguments()
@@ -102,5 +109,7 @@ if __name__ == "__main__":
 
         if flags[0] in ["-hh", "-u", "-d"] and flags[1] in ["-hh", "-u", "-d"] and flags[2] in ["-hh", "-u", "-d"]:
             main(arguments=(sys.argv[2], sys.argv[4], sys.argv[6]))
-        else: os.system("python3 main.py --help")
-    else: os.system("python3 main.py --help")
+        else:
+            os.system("python3 main.py --help")
+    else:
+        os.system("python3 main.py --help")
