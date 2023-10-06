@@ -2,9 +2,6 @@
 import os
 import sys
 import signal
-
-import pymysql
-
 from src.parser import parse_arguments
 from src.struct.dump import dump
 from src.struct.type.u_table import u_table
