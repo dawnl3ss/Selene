@@ -12,7 +12,7 @@ $ git clone https://github.com/dawnl3ss/Selene
 $ cd Selene
 ```
 ## 📌 Alternative Installation :
-#### exposes the selene command to the whole  system
+#### exposes the selene command to the whole system
 ```shell
 # Clone the repository
 $ git clone https://github.com/dawnl3ss/Selene
