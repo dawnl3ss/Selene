@@ -20,7 +20,7 @@ $ git clone https://github.com/dawnl3ss/Selene
 # go to the Selene directory
 $ cd Selene
 
-# create a symlink bound to the theia.sh script
+# create a symlink bound to the selene.sh script
 $ sudo ln -s $(realpath selene.sh) /usr/bin/selene
 ```
 
